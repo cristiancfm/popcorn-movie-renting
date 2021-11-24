@@ -71,7 +71,7 @@
     <!-- END OF BETA MESSAGE -->
 
 
-    <!-- flash messages -->
+    <!-- Flash messages -->
     {% with messages = get_flashed_messages(with_categories=true) %} {% if
         messages %} {% for category, message in messages %} {% if category ==
         'error' %}
@@ -87,6 +87,7 @@
         {% endif %} {% endfor %} {% endif %} {% endwith %}
 
 
+    <!-- Content -->
     {% block content %}
 
     <p>Replace this tag with the specified content of the page</p>
