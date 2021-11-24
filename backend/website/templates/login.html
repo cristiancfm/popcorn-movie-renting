@@ -1,7 +1,40 @@
-{% extends "base.html" %} 
+{% extends "base.html" %} {% block title %}Log In - Popcorn Movie
+Renting{%endblock %} {% block content %}
 
-{% block title %}Log In - Popcorn Movie Renting{%endblock %} 
+<section class="p-5">
+  <div class="container" style="max-width: 500px">
+    <div class="container mb-2 p-2 border-bottom text-center">
+      <h2>Log In</h2>
+    </div>
 
-{% block content %}
-<p>The log in page</p>
+    <form method="POST">
+      <div class="form-group">
+        <div class="mb-2">
+          <label for="email">E-mail Address</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            class="form-control"
+            placeholder="example@mail.com"
+          />
+        </div>
+        <div class="mb-2">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="form-control"
+            placeholder="password"
+          />
+        </div>
+
+        <br />
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</section>
+
 {% endblock %}

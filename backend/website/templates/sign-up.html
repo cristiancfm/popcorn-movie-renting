@@ -1,7 +1,70 @@
-{% extends "base.html" %} 
+{% extends "base.html" %} {% block title %}Sign Up - Popcorn Movie
+Renting{%endblock %} {% block content %}
 
-{% block title %}Log In - Popcorn Movie Renting{%endblock %} 
+<section class="p-5">
+  <div class="container" style="max-width: 500px">
+    <div class="container mb-2 p-2 border-bottom text-center">
+      <h2>Sign Up</h2>
+    </div>
 
-{% block content %}
-<p>The sign up page</p>
+    <form method="POST">
+      <div class="form-group">
+        <div class="mb-2">
+          <label for="email">E-mail Address</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            class="form-control"
+            placeholder="example@mail.com"
+          />
+        </div>
+        <div class="mb-2">
+          <label for="firstName">Fist Name</label>
+          <input
+            type="text"
+            name="firstName"
+            id="firstName"
+            class="form-control"
+            placeholder="First Name"
+          />
+        </div>
+        <div class="mb-2">
+          <label for="lastName">Last Name</label>
+          <input
+            type="text"
+            name="lastName"
+            id="lastName"
+            class="form-control"
+            placeholder="Last Name"
+          />
+        </div>
+        <div class="mb-2">
+          <label for="password1">Password</label>
+          <input
+            type="password"
+            name="password1"
+            id="password1"
+            class="form-control"
+            placeholder="password"
+          />
+        </div>
+        <div class="mb-2">
+          <label for="password2">Confirm Password</label>
+          <input
+            type="password"
+            name="password2"
+            id="password2"
+            class="form-control"
+            placeholder="password"
+          />
+        </div>
+
+        <br />
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</section>
+
 {% endblock %}
