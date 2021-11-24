@@ -28,7 +28,7 @@
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
       <div class="container">
-        <a href="#" class="navbar-brand">Popcorn Movie Renting</a>
+        <a href="/" class="navbar-brand">Popcorn Movie Renting</a>
 
         <button
           class="navbar-toggler"
@@ -63,9 +63,32 @@
       </div>
     </nav>
 
+    <!-- BETA MESSAGE -->
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Warning!</strong> Still on beta stage.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <!-- END OF BETA MESSAGE -->
+
+
+    <!-- flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %} {% for category, message in messages %} {% if category ==
+        'error' %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error: </strong> {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% else %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %} {% endfor %} {% endif %} {% endwith %}
+
 
     {% block content %}
-    
+
     <p>Replace this tag with the specified content of the page</p>
 
     {% endblock %}
