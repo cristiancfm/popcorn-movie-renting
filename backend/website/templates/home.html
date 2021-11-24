@@ -1,0 +1,190 @@
+{% extends "base.html" %} 
+
+{% block title %}Home - Popcorn Movie Renting{%endblock %} 
+
+{% block content %}
+
+<!-- Showcase -->
+<section class="bg-dark bg-gradient text-light p-5">
+  <div class="container">
+    <div class="d-lg-flex align-items-center justify-content-between">
+      <div class="container p-2">
+        <h1>Rent Thousands Of Movies</h1>
+        <h4>
+          Choose from a wide variety of titles and watch them anywhere, anytime.
+        </h4>
+        <br />
+        <button type="button" class="btn btn-secondary">Browse Catalog</button>
+        <button type="button" class="btn btn-primary">Sign Up</button>
+      </div>
+
+      <div class="container p-2">
+        <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#mainCarousel"
+              data-bs-slide-to="0"
+              class="active"
+              aria-current="true"
+              aria-label="Slide 1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#mainCarousel"
+              data-bs-slide-to="1"
+              aria-label="Slide 2"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#mainCarousel"
+              data-bs-slide-to="2"
+              aria-label="Slide 3"
+            ></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="carousel-caption d-none d-md-block">
+                <p>Harry Potter and the Sorcerer's Stone (2001)</p>
+              </div>
+              <img
+                src="static/images/carousel/harry-potter.jpg"
+                class="d-block w-100"
+                alt=""
+              />
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-caption d-none d-md-block">
+                <p>The Seven Year Itch (1955)</p>
+              </div>
+              <img
+                src="static/images/carousel/marilyn.jpg"
+                class="d-block w-100"
+                alt=""
+              />
+            </div>
+            <div class="carousel-item">
+              <div class="carousel-caption d-none d-md-block">
+                <p>The Beach (2000)</p>
+              </div>
+              <img
+                src="static/images/carousel/the-beach.jpg"
+                class="d-block w-100"
+                alt=""
+              />
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#mainCarousel"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#mainCarousel"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section class="bg-dark text-light p-5">
+  <div class="container">
+    <div class="container p-2 border-bottom text-center">
+      <h2>How It Works</h2>
+    </div>
+
+    <div class="row text-center p-5">
+      <div class="col-md">
+        <h1><i class="bi bi-collection-play"></i></h1>
+        <h4>Choose</h4>
+        <p>
+          Create your list of movies to watch choosing from thousands of titles
+        </p>
+      </div>
+      <div class="col-md">
+        <h1><i class="bi bi-tv"></i></h1>
+        <h4>Watch</h4>
+        <p>
+          Start watching immediatly after you purchase. No downloading required
+        </p>
+      </div>
+      <div class="col-md">
+        <h1><i class="bi bi-cloud-arrow-down"></i></h1>
+        <h4>Download</h4>
+        <p>Save movies on your device to watch later without connection</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- New Releases -->
+<section class="p-5">
+  <div class="container">
+    <div class="container p-2 border-bottom text-center">
+      <h2>New Releases</h2>
+    </div>
+
+    <div class="row text-center p-5">
+      <div class="card-group">
+        <div class="card">
+          <img
+            src="static/images/new-releases/old.jpg"
+            class="card-img-top"
+            alt=""
+          />
+          <div class="card-body">
+            <h5 class="card-title">Old</h5>
+            <p class="card-text"><small class="text-muted">2021</small></p>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            src="static/images/new-releases/malignant.jpg"
+            class="card-img-top"
+            alt=""
+          />
+          <div class="card-body">
+            <h5 class="card-title">Malignant</h5>
+            <p class="card-text"><small class="text-muted">2021</small></p>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            src="static/images/new-releases/a_quiet_place_part_ii.jpg"
+            class="card-img-top"
+            alt=""
+          />
+          <div class="card-body">
+            <h5 class="card-title">A Quiet Place Part II</h5>
+            <p class="card-text"><small class="text-muted">2021</small></p>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            src="static/images/new-releases/those_who_wish_me_dead.jpg"
+            class="card-img-top"
+            alt=""
+          />
+          <div class="card-body">
+            <h5 class="card-title">Those Who Wish Me Dead</h5>
+            <p class="card-text"><small class="text-muted">2021</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
