@@ -1,1 +1,1 @@
-# web-technologies-projects
+# web-technologies-project
