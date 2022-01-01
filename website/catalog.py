@@ -19,6 +19,6 @@ def popular_movies():
     return render_template("movies.html", user=current_user, movies=movies_list)
 
 
-@catalog.route('/movies/<int:movie_id>')    # int: only integer will be passed in the url otherwise it will give a 404 error
+@catalog.route('/movies/id/<int:movie_id>')    # int: only integer will be passed in the url otherwise it will give a 404 error
 def movie(movie_id):
     return ('you asked for movie{0}'.format(id))
