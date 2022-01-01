@@ -11,7 +11,7 @@ Renting{%endblock %} {% block content %}
         your search.
       </p>
         <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-primary">Most Popular</button>
+          <button type="button" class="btn btn-primary">Popular</button>
           <button type="button" class="btn btn-primary">From A to Z</button>
           <button type="button" class="btn btn-primary">a</button>
         </div>
@@ -20,28 +20,36 @@ Renting{%endblock %} {% block content %}
     <div class="row g-2 text-center p-3">
         {% for movie in movies %}
             <div class="col-6 col-md-3 col-lg-2">
-                <div class="card">
-                    {% if 'poster_path' in movie %}
-                        <img
-                            src={{ "https://www.themoviedb.org/t/p/original" + movie['poster_path'] }}
-                            class="card-img-top"
-                            alt=""
-                        />
-                    {% else %}
-                        <img
-                            src="static/images/movie_placeholder.png"
-                            class="card-img-top"
-                            alt=""
-                        />
-                    {% endif %}
-                  <div class="card-body">
-                    <h5 class="card-title">{{ movie['title'] }}</h5>
-                    <p class="card-text"><small class="text-muted">Rating: {{ movie['vote_average'] }}</small></p>
-                  </div>
-                </div>
+                <a href="/movies/id/{{ movie['id'] }}" class="text-decoration-none">
+                    <div class="card">
+                        {% if 'poster_path' in movie %}
+                            <img
+                                src={{ "https://www.themoviedb.org/t/p/original" + movie['poster_path'] }}
+                                class="card-img-top"
+                                alt=""
+                            />
+                        {% else %}
+                            <img
+                                src="static/images/movie_placeholder.png"
+                                class="card-img-top"
+                                alt=""
+                            />
+                        {% endif %}
+                      <div class="card-body">
+                        <h5 class="card-title">{{ movie['title'] }}</h5>
+                        <p class="card-text"><small class="text-muted">Rating: {{ movie['vote_average'] }}</small></p>
+                      </div>
+                    </div>
+                </a>
             </div>
+
+
+
         {% endfor %}
     </div>
+
+
+
   </div>
 </section>
 
