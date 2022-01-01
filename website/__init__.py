@@ -1,4 +1,5 @@
 from flask import Flask
+from flask.helpers import url_for
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
@@ -15,9 +16,11 @@ def create_app():
 
     from .views import views
     from .auth import auth
+    from .catalog import catalog
 
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
+    app.register_blueprint(catalog, url_prefix='/')
 
     from .models import User
 
