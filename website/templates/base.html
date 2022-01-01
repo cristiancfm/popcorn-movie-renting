@@ -19,6 +19,7 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css"
     />
 
+    <link rel="icon" type="image/png" href="../static/images/popcorn.png" />
     <title>{% block title %}Base Template{% endblock %}</title>
     <!-- a block can be overwritten in a child template -->
   </head>
@@ -28,7 +29,9 @@
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
       <div class="container">
-        <a href="/" class="navbar-brand">Popcorn Movie Renting</a>
+        <a href="/" class="navbar-brand">
+            <img src="../static/images/popcorn.png" /> Popcorn Movie Renting
+        </a>
 
         <button
           class="navbar-toggler"
@@ -95,7 +98,9 @@
     <!-- Footer -->
     <footer class="p-5 bg-dark text-light">
       <div class="row">
-        <div class="col-md">(logo)</div>
+        <div class="col-md">
+             <img src="../static/images/popcorn.png" /> Popcorn Movie Renting
+        </div>
         <div class="col-md">
           <h4>How It Works</h4>
           <ul>
