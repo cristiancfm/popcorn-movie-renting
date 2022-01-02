@@ -74,7 +74,6 @@ def sign_up():
 @login_required
 def profile():
     rented_movies = RentedMovie.query.filter_by(userId=current_user.id).all()
-    print(rented_movies[0])
     return render_template("profile.html", user=current_user, rented_movies=rented_movies, tmdb=tmdb)
 
 
