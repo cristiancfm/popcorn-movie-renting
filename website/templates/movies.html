@@ -11,7 +11,7 @@ Renting{%endblock %} {% block content %}
         your search.
       </p>
         <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-primary">Popular</button>
+          <button type="button" class="btn btn-primary active">Popular</button>
           <button type="button" class="btn btn-primary">From A to Z</button>
           <button type="button" class="btn btn-primary">a</button>
         </div>
@@ -20,7 +20,7 @@ Renting{%endblock %} {% block content %}
     <div class="row g-2 text-center p-3">
         {% for movie in movies %}
             <div class="col-6 col-md-3 col-lg-2">
-                <a href="/movies/id/{{ movie['id'] }}" class="text-decoration-none">
+                <a href="/movies/{{ movie['id'] }}" class="text-decoration-none">
                     <div class="card">
                         {% if 'poster_path' in movie %}
                             <img

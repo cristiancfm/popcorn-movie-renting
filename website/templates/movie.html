@@ -1,0 +1,93 @@
+
+
+{% extends "base.html" %} {% block title %} {{ movie.info()['title'] }} - Popcorn Movie
+Renting{%endblock %} {% block content %}
+
+<!-- Movie details page -->
+<section class="p-5">
+  <div class="container">
+
+    <div class="row">
+        <div class="col-3">
+          <div class="card">
+            {% if 'poster_path' in movie.info() %}
+                <img
+                    src={{ "https://www.themoviedb.org/t/p/original" + movie.info()['poster_path'] }}
+                    class="card-img-top"
+                    alt=""
+                />
+            {% else %}
+                <img
+                    src="../static/images/movie_placeholder.png"
+                    class="card-img-top"
+                    alt=""
+                />
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="col-9">
+          <h2>{{ movie['title'] }}</h2>
+            <hr>
+            <h5>Overview:</h5>
+            <p>{{ movie.info()['overview'] }}</p>
+
+
+
+        {% if user.is_authenticated %}
+            <p><a href="/rent/{{ movie['id'] }}" class="btn btn-primary">Rent Movie</a></p>
+        {% else %}
+            <p><a href="/login" class="btn btn-primary">Log In to Rent this Movie</a></p>
+        {% endif %}
+
+
+
+
+
+
+
+            <hr>
+
+            <h5>Release Date:</h5>
+            <p>{{ movie.info()['release_date'] }}</p>
+
+            <h5>Ratings:</h5>
+            <p>{{ movie.info()['vote_average'] }}</p>
+
+            <h5>Cast:</h5>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Character</th>
+                </tr>
+              </thead>
+              <tbody>
+
+              {% for member in movie.credits()['cast'] %}
+
+                <tr>
+                  <td>{{ member['name'] }}</td>
+                  <td>{{ member['character'] }}</td>
+                </tr>
+
+              {% endfor %}
+
+              </tbody>
+            </table>
+
+
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+  </div>
+</section>
+
+{% endblock %}
