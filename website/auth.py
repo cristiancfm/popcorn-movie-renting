@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from .models import User, RentedMovie, Admin
+from .models import User, RentedMovie
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
@@ -96,37 +96,5 @@ def rent(movie_id):
         flash('Movie rented!', category='success')
 
     return redirect(url_for('catalog.movie', movie_id=movie_id))
-
-
-@auth.route('/login/admin', methods=['GET', 'POST'])
-def login_admin():
-
-    ADMIN_EMAIL = "admin@popcorn-renting.com"
-    ADMIN_PASSWORD = "admin"
-
-    admin = Admin.query.filter_by(email=ADMIN_EMAIL).first()
-    if not admin:
-        # create administrator
-        new_admin = Admin(email=ADMIN_EMAIL, password=generate_password_hash(ADMIN_PASSWORD, method='sha256'))
-        db.session.add(new_admin)
-        db.session.commit()
-
-
-    if request.method == 'POST':
-        email = request.form.get('email')
-        password = request.form.get('password')
-
-        admin = Admin.query.filter_by(email=email).first()
-        if admin:
-            if check_password_hash(admin.password, password):
-                flash('Logged in successfully!', category='success')
-                login_user(admin, remember=True)
-                return redirect(url_for('views.home'))
-            else:
-                flash('Incorrect password. Please try again.', category='error')
-        else:
-            flash('No administrator registered with this email', category='error')
-
-    return render_template("login_admin.html", user=current_user)
 
 

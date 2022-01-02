@@ -1,7 +1,7 @@
 from flask import Flask, redirect
 from flask_sqlalchemy import SQLAlchemy
 from os import path
-from flask_login import LoginManager, current_user
+from flask_login import LoginManager
 from flask_admin import Admin, AdminIndexView
 from flask_admin.contrib.sqla import ModelView
 from werkzeug import Response
@@ -31,7 +31,7 @@ def create_app():
     app.register_blueprint(auth, url_prefix='/')
     app.register_blueprint(catalog, url_prefix='/')
 
-    from .models import User, RentedMovie
+    from .models import User, RentedMovie, Movie
 
     create_database(app)
     
@@ -103,8 +103,13 @@ def create_admin_panel(app, models):
         column_list = ['userId', 'movieId', 'returnDate']
         form_columns = ['userId', 'movieId', 'returnDate']
 
+    class MoviesView(MyModelView):
+        column_list = ['id']
+        form_columns = ['id']
+
     admin.add_view(UsersView(models.User, db.session))
     admin.add_view(RentedMoviesView(models.RentedMovie, db.session))
+    admin.add_view(MoviesView(models.Movie, db.session))
 
 
 
