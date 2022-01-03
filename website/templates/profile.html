@@ -1,0 +1,54 @@
+{% extends "base.html" %} {% block title %}Log In - Popcorn Movie
+Renting{%endblock %} {% block content %}
+
+<section class="p-5">
+  <div class="container" style="max-width: 500px">
+    <div class="container mb-2 p-2 border-bottom text-center">
+      <h2>Profile</h2>
+    </div>
+    <div class="row">
+        <p>Email: {{ user.email }}</p>
+    </div>
+    <div class="row">
+        <p>First Name: {{ user.firstName }}</p>
+    </div>
+    <div class="row">
+        <p>Last Name: {{ user.lastName }}</p>
+    </div>
+    <hr>
+
+    <div class="row">
+        <h5>Rented Movies:</h5>
+
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Movie Title</th>
+                  <th scope="col">Return Date</th>
+                </tr>
+              </thead>
+              <tbody>
+
+              {% for item in rented_movies %}
+                {% set movie_id = item.movieId %}
+                {% set movie = tmdb.Movies(movie_id).info() %}
+
+                <tr>
+                  <td>{{ movie['title'] }}</td>
+                  <td>{{ item.returnDate }}</td>
+                </tr>
+
+              {% endfor %}
+
+              </tbody>
+            </table>
+
+
+    </div>
+
+    
+  </div>
+</section>
+
+{% endblock %}
