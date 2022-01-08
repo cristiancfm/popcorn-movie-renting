@@ -24,12 +24,13 @@ def popular_movies():
 def movie(movie_id):
     movie = Movie.query.filter_by(id=movie_id).first()
     movie_tmdb = tmdb.Movies(movie_id)
-    rented_movies = RentedMovie.query.filter_by(userId=current_user.id).all()
 
     is_movie_rented = False
-    if rented_movies:   # the list has elements
-        for rented_movie in rented_movies:
-            if movie_id == rented_movie.movieId:
-                is_movie_rented = True
+    if current_user.is_authenticated:
+        rented_movies = RentedMovie.query.filter_by(userId=current_user.id).all()
+        if rented_movies:   # the list has elements
+            for rented_movie in rented_movies:
+                if movie_id == rented_movie.movieId:
+                    is_movie_rented = True
 
     return render_template("movie.html", user=current_user, movie=movie, movie_tmdb=movie_tmdb, is_movie_rented=is_movie_rented)
