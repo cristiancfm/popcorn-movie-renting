@@ -11,13 +11,41 @@ catalog = Blueprint('catalog', __name__)
 
 @catalog.route('/movies')
 def movies():
-    return redirect(url_for('catalog.popular_movies'))
+    return redirect(url_for('catalog.highest_rated_movies'))
 
+@catalog.route('/movies/highest-rated')
+def highest_rated_movies():
+    def get_rating(movie_tmdb):
+        return movie_tmdb['vote_average']
 
-@catalog.route('/movies/popular')
-def popular_movies():
     movies_list = Movie.query.all()
-    return render_template("movies.html", user=current_user, movies=movies_list, tmdb=tmdb)
+
+    movies_list_tmdb = []
+    for movie in movies_list:
+        movie_tmdb = tmdb.Movies(movie.id).info()
+        movies_list_tmdb.append(movie_tmdb)
+    movies_list_tmdb.sort(key=get_rating, reverse=True)
+
+    filter_by="highest-rated"
+    return render_template("movies.html", user=current_user, movies_tmdb=movies_list_tmdb, tmdb=tmdb, filter_by=filter_by)
+
+@catalog.route('/movies/a-to-z')
+def a_to_z_movies():
+    def get_title(movie_tmdb):
+        return movie_tmdb['title']
+
+    movies_list = Movie.query.all()
+
+    movies_list_tmdb = []
+    for movie in movies_list:
+        movie_tmdb = tmdb.Movies(movie.id).info()
+        movies_list_tmdb.append(movie_tmdb)
+    movies_list_tmdb.sort(key=get_title)
+
+    filter_by = "a-to-z"
+    return render_template("movies.html", user=current_user, movies_tmdb=movies_list_tmdb, tmdb=tmdb, filter_by=filter_by)
+
+
 
 
 @catalog.route('/movie/<int:movie_id>')    # int: only integer will be passed in the url otherwise it will give a 404 error

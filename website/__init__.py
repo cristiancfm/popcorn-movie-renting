@@ -96,14 +96,17 @@ def create_admin_panel(app, models):
     admin = Admin(app, index_view=MyAdminIndexView(), name='Popcorn Movie Renting', template_mode='bootstrap4')
 
     class UsersView(MyModelView):
+        can_export = True
         column_list = ['id', 'email', 'password', 'firstName', 'lastName']
         form_columns = ['id', 'email', 'password', 'firstName', 'lastName']
 
     class RentedMoviesView(MyModelView):
+        can_export = True
         column_list = ['userId', 'movieId', 'returnDate']
         form_columns = ['userId', 'movieId', 'returnDate']
 
     class MoviesView(MyModelView):
+        can_export = True
         column_list = ['id', 'price']
         form_columns = ['id', 'price']
 
