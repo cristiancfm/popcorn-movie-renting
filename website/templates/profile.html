@@ -35,7 +35,7 @@ Renting{%endblock %} {% block content %}
                 {% set movie = tmdb.Movies(movie_id).info() %}
 
                 <tr>
-                  <td>{{ movie['title'] }}</td>
+                  <td><a href="/movie/{{ movie_id }}">{{ movie['title'] }}</a></td>
                   <td>{{ item.returnDate }}</td>
                 </tr>
 

@@ -14,10 +14,12 @@
           Choose from a wide variety of titles and watch them anywhere, anytime.
         </h4>
         <br />
-
-          <a href="/movies" class="btn btn-secondary" role="button">Browse Catalog</a>
-          <a href="/sign-up" class="btn btn-primary" role="button">Sign Up</a>
-
+          {% if not user.is_authenticated %}
+              <a href="/movies" class="btn btn-secondary" role="button">Browse Catalog</a>
+              <a href="/sign-up" class="btn btn-primary" role="button">Sign Up</a>
+          {% else %}
+              <a href="/movies" class="btn btn-primary" role="button">Browse Catalog</a>
+          {% endif %}
       </div>
 
       <div class="container p-2">
@@ -131,62 +133,9 @@
   </div>
 </section>
 
-<!-- New Releases -->
+<!-- Blank section -->
 <section class="p-5">
-  <div class="container">
-    <div class="container p-2 border-bottom text-center">
-      <h2>New Releases</h2>
-    </div>
 
-    <div class="row text-center p-5">
-      <div class="card-group">
-        <div class="card">
-          <img
-            src="static/images/new-releases/old.jpg"
-            class="card-img-top"
-            alt=""
-          />
-          <div class="card-body">
-            <h5 class="card-title">Old</h5>
-            <p class="card-text"><small class="text-muted">2021</small></p>
-          </div>
-        </div>
-        <div class="card">
-          <img
-            src="static/images/new-releases/malignant.jpg"
-            class="card-img-top"
-            alt=""
-          />
-          <div class="card-body">
-            <h5 class="card-title">Malignant</h5>
-            <p class="card-text"><small class="text-muted">2021</small></p>
-          </div>
-        </div>
-        <div class="card">
-          <img
-            src="static/images/new-releases/a_quiet_place_part_ii.jpg"
-            class="card-img-top"
-            alt=""
-          />
-          <div class="card-body">
-            <h5 class="card-title">A Quiet Place Part II</h5>
-            <p class="card-text"><small class="text-muted">2021</small></p>
-          </div>
-        </div>
-        <div class="card">
-          <img
-            src="static/images/new-releases/those_who_wish_me_dead.jpg"
-            class="card-img-top"
-            alt=""
-          />
-          <div class="card-body">
-            <h5 class="card-title">Those Who Wish Me Dead</h5>
-            <p class="card-text"><small class="text-muted">2021</small></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 
 {% endblock %}
