@@ -36,7 +36,7 @@ Renting{%endblock %} {% block content %}
 
         {% if user.is_authenticated %}
             {% if is_movie_rented %}
-                <p><a href="/rent/{{ movie.id }}" class="btn btn-success" role="button">Watch Movie</a></p>
+                <p><a href="/movie/{{ movie.id }}" class="btn btn-success" role="button">Watch Movie</a></p>
             {% else %}
                 <p><a href="/rent/{{ movie.id }}" class="btn btn-primary" role="button">
                     Rent Movie for €{{ movie.price }}</a></p>

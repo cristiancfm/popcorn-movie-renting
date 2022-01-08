@@ -20,7 +20,7 @@ def popular_movies():
     return render_template("movies.html", user=current_user, movies=movies_list, tmdb=tmdb)
 
 
-@catalog.route('/movies/<int:movie_id>')    # int: only integer will be passed in the url otherwise it will give a 404 error
+@catalog.route('/movie/<int:movie_id>')    # int: only integer will be passed in the url otherwise it will give a 404 error
 def movie(movie_id):
     movie = Movie.query.filter_by(id=movie_id).first()
     movie_tmdb = tmdb.Movies(movie_id)

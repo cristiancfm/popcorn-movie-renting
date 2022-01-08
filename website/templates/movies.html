@@ -20,7 +20,7 @@ Renting{%endblock %} {% block content %}
         {% for item in movies %}
             {% set movie = tmdb.Movies(item.id).info() %}
             <div class="col-6 col-md-3 col-lg-2">
-                <a href="/movies/{{ movie['id'] }}" class="text-decoration-none">
+                <a href="/movie/{{ movie['id'] }}" class="text-decoration-none">
                     <div class="card">
                         {% if 'poster_path' in movie %}
                             <img
