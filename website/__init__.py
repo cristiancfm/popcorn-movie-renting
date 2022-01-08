@@ -13,6 +13,7 @@ DB_NAME = "database.db"
 app = Flask(__name__)
 basic_auth = BasicAuth(app)
 
+
 def create_app():
     app.config['SECRET_KEY'] = 'secretkey'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
@@ -43,10 +44,7 @@ def create_app():
     def load_user(id):
         return User.query.get(int(id))
 
-
-
     create_admin_panel(app, models)
-
     
     return app
 
@@ -57,9 +55,7 @@ def create_database(app):
         print('Created Database!')
 
 
-
-
-
+# classes for making the administration panel protected by username and password
 class MyModelView(ModelView):
     def is_accessible(self):
         if not basic_auth.authenticate():
@@ -69,7 +65,6 @@ class MyModelView(ModelView):
 
     def inaccessible_callback(self, name, **kwargs):
         return redirect(basic_auth.challenge())
-
 
 
 class MyAdminIndexView(AdminIndexView):
@@ -82,16 +77,16 @@ class MyAdminIndexView(AdminIndexView):
         return redirect(basic_auth.challenge())
 
 
-
 class AuthException(HTTPException):
     def __init__(self, message):
         super().__init__(message, Response(
             "You could not be authenticated. Please refresh the page.", 401,
             {'WWW-Authenticate': 'Basic realm="Login Required"'}
         ))
+# *****************************************************
 
 
-
+# administration panel
 def create_admin_panel(app, models):
     admin = Admin(app, index_view=MyAdminIndexView(), name='Popcorn Movie Renting', template_mode='bootstrap4')
 
@@ -113,6 +108,4 @@ def create_admin_panel(app, models):
     admin.add_view(UsersView(models.User, db.session))
     admin.add_view(RentedMoviesView(models.RentedMovie, db.session))
     admin.add_view(MoviesView(models.Movie, db.session))
-
-
-
+# *****************************************************

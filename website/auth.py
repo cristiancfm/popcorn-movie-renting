@@ -18,7 +18,7 @@ def login():
         password = request.form.get('password')
 
         user = User.query.filter_by(email=email).first()
-        if user:
+        if user:    # the user exists
             if check_password_hash(user.password, password):
                 flash('Logged in successfully!', category='success')
                 login_user(user, remember=True)
@@ -48,7 +48,7 @@ def sign_up():
         password2 = request.form.get('password2')
 
         user = User.query.filter_by(email=email).first()
-        if user:
+        if user:    # the users exists
             flash('Email already exists.', category='error')
         elif len(email) < 4:
             flash('The email must have at least 4 characters.', category='error')
@@ -84,6 +84,7 @@ def profile():
             db.session.commit()
             flash("A rented movie was returned because it expired.", category='info')
 
+    # get updated list of movies
     rented_movies = RentedMovie.query.filter_by(userId=current_user.id).all()
 
     return render_template("profile.html", user=current_user, rented_movies=rented_movies, tmdb=tmdb)
@@ -94,10 +95,10 @@ def profile():
 def rent(movie_id):
     rented_movie = RentedMovie.query.filter_by(movieId=movie_id).first()
 
-    if rented_movie:
+    if rented_movie:    # the movie was already rented
         flash('This movie was already rented.', category='error')
 
-    else:
+    else:   # rent the movie
         today = DT.date.today()
         fifteen_days = today + DT.timedelta(days=15)
 
