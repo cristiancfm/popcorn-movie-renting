@@ -30,7 +30,7 @@
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
       <div class="container">
         <a href="/" class="navbar-brand">
-            <img src="../static/images/popcorn.png" /> Popcorn Movie Renting
+            <img src="../static/images/popcorn.png" alt=""/> Popcorn Movie Renting
         </a>
 
         <button
@@ -77,9 +77,19 @@
             <strong>Error: </strong> {{ message }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
+        {% elif category == 'info' %}
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <strong>Information: </strong> {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% elif category == 'warning' %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Warning: </strong> {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
         {% else %}
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ message }}
+            <strong>Success: </strong>{{ message }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         {% endif %} {% endfor %} {% endif %} {% endwith %}
@@ -97,11 +107,11 @@
     <footer class="p-5 bg-dark text-light">
       <div class="row">
         <div class="col-md">
-             <img src="../static/images/popcorn.png" /> Popcorn Movie Renting
+             <img src="../static/images/popcorn.png" alt=""/> Popcorn Movie Renting
         </div>
         <div class="col-md">
           <h4>How It Works</h4>
-          <p>Create an account to rent a movie. You will have 15 days to enjoy it.</p>
+          <p>Create an account and rent all the movies you want. You will have 15 days to enjoy them!</p>
         </div>
         <div class="col-md">
           <h4>Catalog</h4>

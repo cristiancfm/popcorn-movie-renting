@@ -1,3 +1,5 @@
+
+
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from .models import User, RentedMovie
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -74,6 +76,16 @@ def sign_up():
 @login_required
 def profile():
     rented_movies = RentedMovie.query.filter_by(userId=current_user.id).all()
+
+    # return expired rented movies
+    for rented_movie in rented_movies:
+        if rented_movie.returnDate.strftime('%Y-%m-%d') == DT.datetime.today().strftime('%Y-%m-%d'):
+            db.session.delete(rented_movie)
+            db.session.commit()
+            flash("A rented movie was returned because it expired.", category='info')
+
+    rented_movies = RentedMovie.query.filter_by(userId=current_user.id).all()
+
     return render_template("profile.html", user=current_user, rented_movies=rented_movies, tmdb=tmdb)
 
 
@@ -92,7 +104,7 @@ def rent(movie_id):
         new_rented_movie = RentedMovie(userId=current_user.id, movieId=movie_id, returnDate=fifteen_days)
         db.session.add(new_rented_movie)
         db.session.commit()
-        flash('Movie rented!', category='success')
+        flash('Movie was rented.', category='success')
 
     return redirect(url_for('catalog.movie', movie_id=movie_id))
 

@@ -104,8 +104,8 @@ def create_admin_panel(app, models):
         form_columns = ['userId', 'movieId', 'returnDate']
 
     class MoviesView(MyModelView):
-        column_list = ['id']
-        form_columns = ['id']
+        column_list = ['id', 'price']
+        form_columns = ['id', 'price']
 
     admin.add_view(UsersView(models.User, db.session))
     admin.add_view(RentedMoviesView(models.RentedMovie, db.session))

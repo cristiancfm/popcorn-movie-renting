@@ -1,6 +1,6 @@
 
 
-{% extends "base.html" %} {% block title %} {{ movie.info()['title'] }} - Popcorn Movie
+{% extends "base.html" %} {% block title %} {{ movie_tmdb.info()['title'] }} - Popcorn Movie
 Renting{%endblock %} {% block content %}
 
 <!-- Movie details page -->
@@ -10,9 +10,9 @@ Renting{%endblock %} {% block content %}
     <div class="row">
         <div class="col-3">
           <div class="card">
-            {% if 'poster_path' in movie.info() %}
+            {% if 'poster_path' in movie_tmdb.info() %}
                 <img
-                    src={{ "https://www.themoviedb.org/t/p/original" + movie.info()['poster_path'] }}
+                    src={{ "https://www.themoviedb.org/t/p/original" + movie_tmdb.info()['poster_path'] }}
                     class="card-img-top"
                     alt=""
                 />
@@ -27,32 +27,32 @@ Renting{%endblock %} {% block content %}
         </div>
 
         <div class="col-9">
-          <h2>{{ movie['title'] }}</h2>
+          <h2>{{ movie_tmdb['title'] }}</h2>
             <hr>
             <h5>Overview:</h5>
-            <p>{{ movie.info()['overview'] }}</p>
+            <p>{{ movie_tmdb.info()['overview'] }}</p>
 
 
 
         {% if user.is_authenticated %}
-            <p><a href="/rent/{{ movie['id'] }}" class="btn btn-primary">Rent Movie</a></p>
+            {% if is_movie_rented %}
+                <p><a href="/rent/{{ movie.id }}" class="btn btn-success" role="button">Watch Movie</a></p>
+            {% else %}
+                <p><a href="/rent/{{ movie.id }}" class="btn btn-primary" role="button">
+                    Rent Movie for €{{ movie.price }}</a></p>
+            {% endif %}
         {% else %}
             <p><a href="/login" class="btn btn-primary">Log In to Rent this Movie</a></p>
         {% endif %}
 
 
-
-
-
-
-
             <hr>
 
             <h5>Release Date:</h5>
-            <p>{{ movie.info()['release_date'] }}</p>
+            <p>{{ movie_tmdb.info()['release_date'] }}</p>
 
             <h5>Ratings:</h5>
-            <p>{{ movie.info()['vote_average'] }}</p>
+            <p>{{ movie_tmdb.info()['vote_average'] }}</p>
 
             <h5>Cast:</h5>
             <table class="table">
@@ -64,7 +64,7 @@ Renting{%endblock %} {% block content %}
               </thead>
               <tbody>
 
-              {% for member in movie.credits()['cast'] %}
+              {% for member in movie_tmdb.credits()['cast'] %}
 
                 <tr>
                   <td>{{ member['name'] }}</td>
